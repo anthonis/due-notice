@@ -21,7 +21,6 @@ defusedxml==0.6.0
 docutils==0.15.2
 entrypoints==0.3
 enum-compat==0.0.3
-idna==2.9
 joblib @ file:///home/conda/feedstock_root/build_artifacts/joblib_1589812474002/work
 jsonschema==3.2.0
 jupyter-client==6.1.3
