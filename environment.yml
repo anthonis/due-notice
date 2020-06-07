@@ -1,0 +1,15 @@
+name: due-notice
+channels:
+- conda-forge
+dependencies:
+- python=3.8
+- conda
+- pandas
+- matplotlib
+- numpy
+- scipy
+- scikit-learn
+- seaborn
+- pip
+- pip:
+  - streamlit
