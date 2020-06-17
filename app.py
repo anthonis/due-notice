@@ -22,19 +22,49 @@ import datetime
 
 """
 # DueNotice
-A tool to predict preterm births from surface electromyograms
+A physician's tool to predict preterm births from surface electromyograms
 """
 
-def file_selector(folder_path='.'):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
+patient1=pd.read_csv('p1PT.csv', delimiter='\t')
+patient1=patient1.drop(['Unnamed: 0'],axis=1)
+patient2=pd.read_csv('p1T.csv', delimiter='\t')
+patient2=patient2.drop(['Unnamed: 0'],axis=1)
+patient3=pd.read_csv('p2PT.csv', delimiter='\t')
+patient3=patient3.drop(['Unnamed: 0'],axis=1)
+patient4=pd.read_csv('p2T.csv',delimiter='\t')
+patient4=patient4.drop(['Unnamed: 0'],axis=1)
 
-#filename = file_selector()
-#st.write('You selected `%s`' % filename)
 
-#input_buffer = st.file_uploader("Upload a file", type=("csv")) 
-input_buffer = st.file_uploader("Upload .csv file", type=("csv")) 
+#def file_selector(folder_path='.'):
+#    filenames = os.listdir(folder_path)
+#    selected_filename = st.selectbox('Select a file', filenames)
+#    return os.path.join(folder_path, selected_filename)
+
+patient=st.selectbox('Select patient sEMG recording',('Patient 1','Patient 2','Patient 3','Patient 4'))
+
+if patient=='Patient 1':
+	st.write('Patient details:')
+	st.write(patient1)
+	st.write("Preterm delivery expected, consider appropriate interventions")
+	#st.image(image=red)
+if patient=='Patient 2':
+	st.write('Patient details:')
+	st.write(patient2)
+	st.write("Delivery expected at term")
+	#st.image(image=red)
+if patient=='Patient 3':
+	st.write('Patient details:')
+	st.write(patient3)
+	st.write("Preterm delivery expected, consider appropriate interventions")
+	#st.image(image=red)
+if patient=='Patient 4':
+	st.write('Patient details:')
+	st.write(patient4)
+	st.write("Delivery expected at term")
+	#st.image(image=red)
+
+#st.write("Or upload a sEMG recording")
+input_buffer = st.file_uploader("Or upload .csv file of sEMG recording", type=("csv")) 
 
 #myBytesIOObj.seek(0)
 #with open(input_buffer, 'wb') as f:
@@ -61,20 +91,26 @@ if input_buffer is not None:
 	#in_array = data22.to_numpy()
 	#print(type(in_array))
 
-	with open('model_time', 'rb') as f:
+	with open('model_time_now', 'rb') as f:
 		rf = pickle.load(f)
 
 
 	preds = rf.predict(data22)
 
-	def print_outcome(prediction):
-		if prediction[0]==1:
-			return 'Delivery expected at term'
+	Preterm = False
+	for pred in preds:
+		if pred == 0:
+			Preterm = True 
+
+
+	def print_outcome(Preterm):
+		if Preterm==True:
+			return "Preterm delivery expected, consider appropriate interventions"
 		else:
 			return 'Delivery expected prematurely'
-	st.write(print_outcome(preds))
+	st.write(print_outcome(Preterm))
 	#datetime.datetime.now()
-	st.write(datetime.datetime.now())
+	#st.write(datetime.datetime.now())
 
 	input_buffer = None
 
