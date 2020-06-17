@@ -95,11 +95,11 @@ if input_buffer is not None:
 	#in_array = data22.to_numpy()
 	#print(type(in_array))
 
-	with open('model_time_now', 'rb') as f:
-		rf = pickle.load(f)
+	with open('model_time_now', 'rb') as gg:
+    	nb = pickle.load(gg)
 
 
-	preds = rf.predict(data22)
+	preds = nb.predict(data22)
 
 	Preterm = False
 	for pred in preds:
