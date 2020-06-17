@@ -45,21 +45,25 @@ patient=st.selectbox('Select patient sEMG recording',('Patient 1','Patient 2','P
 if patient=='Patient 1':
 	st.write('Patient details:')
 	st.write(patient1)
+	st.write("Expected outcome:")
 	st.write("Preterm delivery expected, consider appropriate interventions")
 	#st.image(image=red)
 if patient=='Patient 2':
 	st.write('Patient details:')
 	st.write(patient2)
+	st.write("Expected outcome:")
 	st.write("Delivery expected at term")
 	#st.image(image=red)
 if patient=='Patient 3':
 	st.write('Patient details:')
 	st.write(patient3)
+	st.write("Expected outcome:")
 	st.write("Preterm delivery expected, consider appropriate interventions")
 	#st.image(image=red)
 if patient=='Patient 4':
 	st.write('Patient details:')
 	st.write(patient4)
+	st.write("Expected outcome:")
 	st.write("Delivery expected at term")
 	#st.image(image=red)
 
@@ -108,6 +112,7 @@ if input_buffer is not None:
 			return "Preterm delivery expected, consider appropriate interventions"
 		else:
 			return 'Delivery expected prematurely'
+	st.write("Expected outcome:")
 	st.write(print_outcome(Preterm))
 	#datetime.datetime.now()
 	#st.write(datetime.datetime.now())
