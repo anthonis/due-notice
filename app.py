@@ -94,8 +94,8 @@ if input_buffer is not None:
 	data22 = data22.drop(['Unnamed: 0'],axis=1)
 	#in_array = data22.to_numpy()
 	#print(type(in_array))
-	with open('model_time_now', 'rb') as gg:
-		nb = pickle.load(gg)
+	with open('model_nb', 'rb') as f:
+		nb = pickle.load(f)
 
 
 	preds = nb.predict(data22)
