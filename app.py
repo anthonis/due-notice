@@ -109,7 +109,7 @@ if input_buffer is not None:
 		if Preterm==True:
 			return "Preterm delivery expected, consider appropriate interventions"
 		else:
-			return 'Delivery expected prematurely'
+			return 'Delivery expected at term'
 	st.write("Expected outcome:")
 	st.write(print_outcome(Preterm))
 	#datetime.datetime.now()
