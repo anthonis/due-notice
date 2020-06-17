@@ -97,7 +97,6 @@ if input_buffer is not None:
 	with open('model_nb', 'rb') as f:
 		nb = pickle.load(f)
 
-
 	preds = nb.predict(data22)
 
 	Preterm = False
